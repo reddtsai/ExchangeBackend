@@ -1,13 +1,24 @@
 .PHONY:
 
 build:
-	go build ./cmd/trading -o bin
+	go build -o bin ./cmd/trading
 
 run:
 	go run ./cmd/trading
 
 pkg-list:
 	go list -m all
+
+pkg-list-u:
+	go list -m -u all
+
+pkg-get:
+ifdef package
+	# go get -u github.com/reddtsai/go-ringing@v1.0.0
+	go get -u $(package)
+else
+	@echo 'make pkg-get package=PackageName'
+endif
 
 pkg-clean:
 	go clean

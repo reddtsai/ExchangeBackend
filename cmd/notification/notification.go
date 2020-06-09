@@ -1,20 +1,16 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/reddtsai/go-ringing"
+	"log"
+
+	"github.com/reddtsai/ExchangeBackend/internal/notification"
 )
 
 func main() {
-	g := gin.Default()
-	c := ringing.NewConfig("0.0.0.0:4161")
-	r, err := ringing.New(c)
+	engine, err := notification.New()
 	if err != nil {
+		log.Println(err.Error())
 		return
 	}
-	g.GET("/", func(c *gin.Context) {
-		r.HandleRequest(c.Writer, c.Request)
-	})
-
-	g.Run(":5000")
+	engine.Run(":5000")
 }

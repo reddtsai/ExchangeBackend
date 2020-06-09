@@ -1,14 +1,19 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"log"
+
+	_ "github.com/go-sql-driver/mysql"
 
 	"github.com/reddtsai/ExchangeBackend/internal/trading"
 )
 
 func main() {
-	engine := gin.Default()
-	trading.NewRouter(engine)
+	engine, err := trading.New()
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
 	engine.Run(":5001")
 
 	// middleware
