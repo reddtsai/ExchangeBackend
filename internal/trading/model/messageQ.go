@@ -18,7 +18,7 @@ type messageBody struct {
 
 func newNSQ() (*messageQueue, error) {
 	c := nsq.NewConfig()
-	producer, err := nsq.NewProducer("0.0.0.0:4150", c)
+	producer, err := nsq.NewProducer("192.168.1.73:4150", c)
 	if err != nil {
 		return nil, err
 	}

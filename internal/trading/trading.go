@@ -14,7 +14,9 @@ func New() (*gin.Engine, error) {
 	order := engine.Group("/order")
 	{
 		order.POST("/buy", handler.Buy)
+		order.POST("/sell", handler.Sell)
 	}
+
 	// model
 	err := model.NewRepository()
 	if err != nil {

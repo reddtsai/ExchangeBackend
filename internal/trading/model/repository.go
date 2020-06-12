@@ -3,8 +3,6 @@ package model
 import (
 	"encoding/json"
 	"fmt"
-	"strconv"
-	"strings"
 )
 
 // Storage trading storage
@@ -56,16 +54,9 @@ func (s *Storage) PlaceOrder(order *Order) error {
 		return err
 	}
 	// mysql
-	var sb strings.Builder
-	sb.WriteString(`INSERT INTO EXCHANGE.ORDER VALUES (`)
-	sb.WriteString(`"` + order.ID.Hex() + `",`)
-	sb.WriteString(`"` + order.Symbol + `",`)
-	sb.WriteString(`"` + order.Type + `",`)
-	sb.WriteString(`"` + order.Amount + `",`)
-	sb.WriteString(`"` + order.Price + `",`)
-	sb.WriteString(strconv.FormatInt(order.Unix, 10) + `)`)
-	fmt.Println(sb.String())
-	err = s.sql.insert(sb.String())
+	sql := `INSERT INTO EXCHANGE.ORDER VALUES ("%s","%s","%s","%s","%s","%d")`
+	sql = fmt.Sprintf(sql, order.ID.Hex(), order.Symbol, order.Type, order.Amount, order.Price, order.Unix)
+	err = s.sql.insert(sql)
 	if err != nil {
 		fmt.Println(err)
 		return err
@@ -80,4 +71,5 @@ func (s Storage) Close() {
 	s.mq.close()
 	s.mongo = nil
 	s.mq = nil
+	s.sql = nil
 }

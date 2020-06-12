@@ -10,7 +10,7 @@ import (
 func New() (*gin.Engine, error) {
 	// ringing
 	n := &ringing.NSQSetting{
-		NSQAddr:      "0.0.0.0:4161",
+		NSQAddr:      "192.168.1.73:4161",
 		Topics:       []string{"order"},
 		TopicChannel: "ch1",
 	}
