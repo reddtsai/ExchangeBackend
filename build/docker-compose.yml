@@ -48,3 +48,17 @@ services:
             ME_CONFIG_MONGODB_ADMINPASSWORD: 123456
         ports:
             - "8081:8081"
+    exchange-trading:
+        image: exchange-trading
+        depends_on: 
+            - mongo
+            - mysql
+            - nsqd
+        ports:
+            - "5001:5001"
+    exchange-notification:
+        image: exchange-notification
+        depends_on: 
+            - nsqlookupd
+        ports: 
+            - "5000:5000"

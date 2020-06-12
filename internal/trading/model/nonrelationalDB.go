@@ -10,7 +10,7 @@ type mongoDB struct {
 }
 
 func newMongoDB() (*mongoDB, error) {
-	session, err := mgo.Dial("mongodb://root:123456@0.0.0.0:27017")
+	session, err := mgo.Dial("mongodb://root:123456@192.168.1.73:27017")
 	if err != nil {
 		return nil, err
 	}

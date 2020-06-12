@@ -26,3 +26,10 @@ pkg-clean:
 
 mod-clean:
 	go clean -modcache
+
+docker-build:
+	docker build -t exchange-trading -f build/trading/Dockerfile .
+	docker build -t exchange-notification -f build/notification/Dockerfile .
+
+docker-run:
+	docker-compose -f build/docker-compose.yml up -d 

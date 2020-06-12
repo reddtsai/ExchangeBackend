@@ -9,7 +9,7 @@ type mysqlDB struct {
 }
 
 func newMySQL() (*mysqlDB, error) {
-	db, err := sql.Open("mysql", "root:123456@tcp(0.0.0.0:3306)/EXCHANGE?tls=skip-verify&autocommit=true")
+	db, err := sql.Open("mysql", "root:123456@tcp(192.168.1.73:3306)/EXCHANGE?tls=skip-verify&autocommit=true")
 	if err != nil {
 		return nil, err
 	}
