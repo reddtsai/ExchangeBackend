@@ -24,7 +24,7 @@ Redd Exchange is a cryptocurrency exchange. It is still developing stage.
     }
     ```
 - POST localhost:5001/order/sell
-    Request body
+    |Request body|
     |field|type|desc|
     |-|-|-|
     |symbol|string|交易對，btcusdt|
